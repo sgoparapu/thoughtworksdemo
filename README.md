@@ -2,6 +2,8 @@ To run the setup
 
 Just clone the repo and cd to the directory and do a terraform plan and then apply
 
+Test by putting the DNS of the Load balancer in the browser ideally you should see a webpage being displayed
+
 --------------------------------------------------------------------------------------------------
 
 This repo contains below set of files and Directories 
