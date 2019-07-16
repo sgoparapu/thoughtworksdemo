@@ -1,3 +1,9 @@
+To run the setup
+
+Just clone the repo and cd to the directory and do a terraform plan and then apply
+
+--------------------------------------------------------------------------------------------------
+
 This repo contains below set of files and Directories 
 
 alb.tf  -- This Terraform script is used setup Application Load Balancer and related stuff like adding target group listeners etc
