@@ -4,6 +4,8 @@ Just clone the repo and cd to the directory and do a terraform plan and then app
 
 Test by putting the DNS of the Load balancer in the browser ideally you should see a webpage being displayed
 
+Updated repo with a screen shot ideally when you launch the setup you should see a screen something like that
+
 --------------------------------------------------------------------------------------------------
 
 This repo contains below set of files and Directories 
