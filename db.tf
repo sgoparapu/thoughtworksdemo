@@ -1,5 +1,3 @@
-### Creating Security Group for DB Instance
-
 resource "aws_security_group" "db" {
     name = "sg_db"
     description = "Allow incoming database connections."
@@ -43,8 +41,6 @@ resource "aws_security_group" "db" {
         Name = "DBServerSG"
     }
 }
-
-### Creating DB Instance 
 
 resource "aws_instance" "db-1" {
     ami = "ami-082b5a644766e0e6f"
