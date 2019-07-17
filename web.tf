@@ -1,5 +1,3 @@
-### Creating Security Group for Web instances
-
 resource "aws_security_group" "sgweb" {
     name = "sgweb"
     description = "Allow inbound connections."
@@ -40,8 +38,6 @@ resource "aws_security_group" "sgweb" {
         Name = "WebServerSG"
     }
 }
-
-### Creating Web instances here we are calling resource twice instead of count because our requirement is to launch the 2 instances in 2 different subnets
 
 resource "aws_instance" "web01" {
     ami = "ami-082b5a644766e0e6f"
