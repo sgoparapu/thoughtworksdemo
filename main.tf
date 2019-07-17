@@ -1,13 +1,9 @@
-### Creating a VPC
-
 resource "aws_vpc" "tw-vpc" {
   cidr_block = "20.0.0.0/16"
   tags = {
     Name = "tw-vpc"
   }
 }
-
-### Creating a Internet gateway and attaching to VPC
 
 resource "aws_internet_gateway" "tw-igw" {
   vpc_id = "${aws_vpc.tw-vpc.id}"
@@ -16,14 +12,10 @@ resource "aws_internet_gateway" "tw-igw" {
   }
 }
 
-### Creating a NAT Gateway for getting internet access to DB instances as we have to install few packages and we dont have a local repo
-
 resource "aws_nat_gateway" "gw" {
   allocation_id = "${aws_eip.tweip-nat.id}"
   subnet_id     = "${aws_subnet.tw-public-subnet.id}"
 }
-
-### Creating a 2 public Subnets
 
 resource "aws_subnet" "tw-public-subnet" {
   vpc_id            = "${aws_vpc.tw-vpc.id}"
@@ -42,8 +34,6 @@ resource "aws_subnet" "tw-public-subnet2" {
   }
 }
 
-### Creating a Private Subnet
-
 resource "aws_subnet" "tw-private-subnet" {
   vpc_id            = "${aws_vpc.tw-vpc.id}"
   cidr_block        = "20.0.2.0/24"
@@ -53,15 +43,11 @@ resource "aws_subnet" "tw-private-subnet" {
   }
 }
 
-### Creating a Route for internet access
-
 resource "aws_route" "internet_access" {
   route_table_id         = "${aws_vpc.tw-vpc.main_route_table_id}"
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.tw-igw.id}"
 }
-
-### Creating a Private route table - Public route table is created by default which is nothing but main route table
 
 resource "aws_route_table" "tw-private_route_table" {
     vpc_id = "${aws_vpc.tw-vpc.id}"
