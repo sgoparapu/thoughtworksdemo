@@ -1,10 +1,22 @@
 To run the setup
 
-Just clone the repo and cd to the directory and do a terraform plan and then apply
+Just clone the repo and cd to the directory and
+
+> Update the variables.tf with the corresponding values
+
+> Then generate DB credentials for Mediawiki Application by running 
+   sh generate_mysql_user_and 
+   
+> Get to the location where tf files are and perform the terraform apply
+    terraform apply
+    
+> Clear the DB credentials
+   sh clear_credentials.sh
+
 
 Test by putting the DNS of the Load balancer in the browser ideally you should see a webpage being displayed
 
-Updated repo with a screen shot ideally when you launch the setup you should see a screen something like that
+Foloow the onscreen instructions to setup Application
 
 --------------------------------------------------------------------------------------------------
 
@@ -22,15 +34,15 @@ providers.tf  -- In this demo i am using AWS so you can choose accordingly
 
 variables.tf  -- Information related to providers like access key and all are updated here
 
-sidharth.pem  -- This is the demo key that is used if you want to use a different key you can create a new one and update the web.tf and db.tf accordingly
+generate_mysql_user_and - To generate DB credentials for Mediawiki App
+
+clear_credentials.sh - To remove the traces of the credentials
 
 userdata  -- This contains the Startup scripts for the instances at the time of launch
 
 The other important thing is the below repo which has a demo page and ansible code which is being called during the instance startup
 
 https://github.com/sgoparapu/ansible-tw.git
-
-As I do not have any code i am just demoing with a simple html page if we have code we can customise accordingly
 
 In this demo we are going with a master less ansible as we are not doing much with the ansible host if we want we can setup a master as well.
 
