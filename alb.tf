@@ -20,15 +20,11 @@ resource "aws_security_group" "tw-alb" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 }
-
-### Creating Application Load Balancer
-
 resource "aws_alb" "tw-alb01" {
   name = "thought-works-demo"
   subnets            = ["${aws_subnet.tw-public-subnet.id}","${aws_subnet.tw-public-subnet2.id}"]
   security_groups = ["${aws_security_group.tw-alb.id}"]
 }
-
 resource "aws_alb_target_group" "tw-group" {
   name     = "tw-alb-target"
   port     = 80
@@ -38,11 +34,11 @@ resource "aws_alb_target_group" "tw-group" {
     type = "lb_cookie"
   }
   health_check {
-    path = "/index.html"
+    path = "/index.php"
     port = 80
+    matcher = "200-301"
   }
 }
-
 resource "aws_alb_listener" "listener_http" {
   load_balancer_arn = "${aws_alb.tw-alb01.arn}"
   port              = "80"
@@ -53,12 +49,10 @@ resource "aws_alb_listener" "listener_http" {
     type             = "forward"
   }
 }
-
 resource "aws_alb_target_group_attachment" "attach0" {
   target_group_arn = "${aws_alb_target_group.tw-group.arn}"
   target_id = "${aws_instance.web01.id}"
 }
-
 resource "aws_alb_target_group_attachment" "attach1" {
   target_group_arn = "${aws_alb_target_group.tw-group.arn}"
   target_id = "${aws_instance.web02.id}"

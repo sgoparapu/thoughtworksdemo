@@ -1,0 +1,13 @@
+#!/bin/bash
+echo "#################################"
+echo "#################################"
+echo "Please make a notee of these values as these will be required to configure your application"
+echo "#################################"
+echo "#################################"
+echo "This is for the first time and credentials will remain same and cannot change from this script Please remember"
+read -p "Enter username for DB user for Mediawiki Application: " username
+read -p "Enter password for DB user for Mediawiki Application: " password
+read -p "Enter Database Name Mediawiki Application: " dbname
+sed -i 's/wikiuser/'"$username"'/g' ./userdata/db.sh
+sed -i 's/password/'"$password"'/g' ./userdata/db.sh
+sed -i 's/wikidb/'"$dbname"'/g' ./userdata/db.sh

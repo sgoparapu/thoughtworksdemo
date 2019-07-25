@@ -40,30 +40,30 @@ resource "aws_security_group" "sgweb" {
 }
 
 resource "aws_instance" "web01" {
-    ami = "ami-082b5a644766e0e6f"
-    availability_zone = "us-west-2a"
+    ami = "${var.ami}"
+    availability_zone = "${var.availability_zone1}"
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.sgweb.id}"]
     subnet_id = "${aws_subnet.tw-public-subnet.id}"
     associate_public_ip_address = true
     source_dest_check = false
-    key_name = "sidharth"
-    user_data = "${file("/home/ec2-user/templates/instance/userdata/web.sh")}"
+    key_name = "${var.key_name}"
+    user_data = "${file("./userdata/web.sh")}"
     tags = {
         Name = "WebServer01"
     }
 }
 
 resource "aws_instance" "web02" {
-    ami = "ami-082b5a644766e0e6f"
-    availability_zone = "us-west-2b"
+    ami = "${var.ami}"
+    availability_zone = "${var.availability_zone2}"
     instance_type = "t2.micro"
     vpc_security_group_ids = ["${aws_security_group.sgweb.id}"]
     subnet_id = "${aws_subnet.tw-public-subnet2.id}"
     associate_public_ip_address = true
     source_dest_check = false
-    key_name = "sidharth"
-    user_data = "${file("/home/ec2-user/templates/instance/userdata/web.sh")}"
+    key_name  = "${var.key_name}"
+    user_data = "${file("./userdata/web.sh")}"
     tags = {
         Name = "WebServer02"
     }

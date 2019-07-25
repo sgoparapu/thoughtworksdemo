@@ -1,43 +1,23 @@
-To run the setup
+How to Run the code :
 
-Just clone the repo and cd to the directory and
+Make sure that variables.tf is updated with the right values for now i have given some default values
 
-> Update the variables.tf with the corresponding values
-
-> Then generate DB credentials for Mediawiki Application by running 
-   sh generate_mysql_user_and 
-   
-> Get to the location where tf files are and perform the terraform apply
-    terraform apply
-    
-> Clear the DB credentials
-   sh clear_credentials.sh
-
-
-Test by putting the DNS of the Load balancer in the browser ideally you should see a webpage being displayed
-
-Follow the onscreen instructions to setup Application
-
---------------------------------------------------------------------------------------------------
+First run the "sh generate_mysql_user_and" to generate the DB credentials and make a note of what you are giving as we need them later
+Secondly run "terraform apply"
+Third Clear the DB credentials by "sh clear_credentials.sh"
+Fourth get the browser put the DNS of load balancer and try to follow the onscreen instructions
 
 This repo contains below set of files and Directories 
 
 alb.tf  -- This Terraform script is used setup Application Load Balancer and related stuff like adding target group listeners etc
-
 web.tf -- This Terraform script is used setup web instance and related stuff
-
 db.tf  -- This Terraform script is used setup DB instance and related stuff
-
 main.tf -- This is the main pillar which ideally takes care of creating a VPC Subnet and various other components which gives us platform to setup or instances
-
 providers.tf  -- In this demo i am using AWS so you can choose accordingly
-
-variables.tf  -- Information related to providers like access key and all are updated here
-
 generate_mysql_user_and - To generate DB credentials for Mediawiki App
-
 clear_credentials.sh - To remove the traces of the credentials
-
+variables.tf  -- Information related to providers like access key and all are updated here
+sidharth.pem  -- This is the demo key that is used if you want to use a different key you can create a new one and update the web.tf and db.tf accordingly
 userdata  -- This contains the Startup scripts for the instances at the time of launch
 
 The other important thing is the below repo which has a demo page and ansible code which is being called during the instance startup

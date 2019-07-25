@@ -43,14 +43,14 @@ resource "aws_security_group" "db" {
 }
 
 resource "aws_instance" "db-1" {
-    ami = "ami-082b5a644766e0e6f"
-    availability_zone = "us-west-2a"
+    ami = "${var.ami}"
+    availability_zone = "${var.availability_zone1}"
     instance_type = "t2.micro"
-    key_name = "sidharth"
+    key_name = "${var.key_name}"
     vpc_security_group_ids = ["${aws_security_group.db.id}"]
     subnet_id = "${aws_subnet.tw-private-subnet.id}"
     source_dest_check = false
-    user_data = "${file("/home/ec2-user/templates/instance/userdata/db.sh")}"
+    user_data = "${file("./userdata/db.sh")}"
     tags = {
         Name = "DB Server 1"
     }
