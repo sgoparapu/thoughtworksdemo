@@ -16,7 +16,7 @@ Just clone the repo and cd to the directory and
 
 Test by putting the DNS of the Load balancer in the browser ideally you should see a webpage being displayed
 
-Foloow the onscreen instructions to setup Application
+Follow the onscreen instructions to setup Application
 
 --------------------------------------------------------------------------------------------------
 
